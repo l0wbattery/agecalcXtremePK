@@ -8,7 +8,7 @@ angular.module('app')
         // http://localhost:8080/#!/pokemon
 
         .when('/agecalc', {
-            templateUrl: 'agecalc/index.html',
+            templateUrl: 'agecalc/agecalc.html',
             controller: 'agecalcCtrl'
         })
 

@@ -1,0 +1,43 @@
+{{niveisAge}}
+
+
+
+<label for="ataqMin">Ataque mínimo</label>
+<input type="text" name="ataqMin" id="ataqMin" ng-model="agecalc.ataqMin">
+
+<label for="ataqMax">Ataque máximo</label>
+<input type="text" name="ataqMax" id="ataqMax" ng-model="agecalc.ataqMax">
+
+<label for="critico">Crítico</label>
+<input type="text" name="critico" id="critico" ng-model="agecalc.critico">
+
+<label for="taxaAtq">Taxa de Ataque</label>
+<input type="text" name="taxaAtq" id="taxaAtq" ng-model="agecalc.taxaAtq">
+
+<label for="taxaDef">Taxa de Defesa</label>
+<input type="text" name="taxaDef" id="taxaDef" ng-model="agecalc.taxaDef">
+
+<label for="abs">Absorção</label>
+<input type="text" name="abs" id="abs" ng-model="agecalc.abs">
+
+<label for="bloqueio">Bloqueio</label>
+<input type="text" name="bloqueio" id="bloqueio" ng-model="agecalc.bloqueio">
+
+<label for="addHp">ADD HP</label>
+<input type="text" name="addHp" id="addHp" ng-model="agecalc.addHp">
+
+<label for="addMp">ADD MP</label>
+<input type="text" name="addMp" id="addMp" ng-model="agecalc.addMp">
+
+<label for="addSp">ADD SP</label>
+<input type="text" name="addSp" id="addSp" ng-model="agecalc.addSp">
+
+<label for="hpRegen">HP Regen</label>
+<input type="text" name="hpRegen" id="hpRegen" ng-model="agecalc.hpRegen">
+
+<label for="mpRegen">MP Regen</label>
+<input type="text" name="mpRegen" id="mpRegen" ng-model="agecalc.mpRegen">
+
+<select name="niveisAge" id="niveisAge" ng-model="agecalc.selectedAge" ng-options="x for x in niveisAge"></select>
+
+<input type="button" value="" ng-submit="">
