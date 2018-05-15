@@ -19,44 +19,90 @@ angular.module('app').controller('agecalcCtrl', function ($scope) {
         24:"+24",
     }
 
-    function baixaAgeAnel(item){
+    function ageAnel(item){
         if(item.nivelAtual < 2){
-            item.ataqMin -= 3;
-            item.ataqMax -= 3;
-            item.addHp -= 30;
-            item.addMana -= 30;
-            item.regenHp -= 0.5;
-            item.regenMp -= 0.5;
-            item.taxaDefesa -= 25;
-            item.absorcao -= 1.0;
+            item.ataqMin += 3;
+            item.ataqMax += 3;
+            item.addHp += 30;
+            item.addMana += 30;
+            item.regenHp += 0.5;
+            item.regenMp += 0.5;
+            item.taxaDefesa += 25;
+            item.absorcao += 1.0;
         }else{
-            item.ataqMin -= 4;
-            item.ataqMax -= 4;
-            item.addHp -= 40;
-            item.addMana -= 40;
-            item.regenHp -= 1.0;
-            item.regenMp -= 1.0;
-            item.taxaDefesa -= 30;
-            item.absorcao -= 2.0;
+            item.ataqMin += 4;
+            item.ataqMax += 4;
+            item.addHp += 40;
+            item.addMana += 40;
+            item.regenHp += 1.0;
+            item.regenMp += 1.0;
+            item.taxaDefesa += 30;
+            item.absorcao += 2.0;
         } 
     }
 
-    function baixaTaxaDefesaItem(item, porcento){
+    function taxaDefesaItem(item, porcento){
         var temp = 0
 
-        /** codigo de reducao de defesa muito loco */
+        temp = item.taxaDefesa/(100/ porcento);
+        item.taxaDefesa += temp;
 
         if(item.nivelAtual >= 20)
-            item.addHp -= 50;
-
+            item.addHp += 50;
         
     }
 
-    function baixaTaxaAtq(item , quantidade){
-        item.taxaAtq -= quantidade;
+    function taxaAtq(item , quantidade){
+        item.taxaAtq += quantidade;
     }
 
-    function diminuiAbs(item, porcentagem){
+    function abs(item, quantidade){
+        item.absorcao += quantidade;
+
+        if(item.nivelAtual >= 10){
+            item.absorcao += quantidade;
+        }
+
+        if(item.nivelAtual >= 20){
+            item.absorcao += quantidade;
+        }
+
+    }
+
+    function critico(item){
+        if(item.nivelAtual % 2 === 0){
+            item.critico += 1;
+        }
+    }
+
+    function block(item){
+        if(item.nivelAtual % 2 === 0){
+            item.block += 1;
+        }
+        if(item.nivelAtual >= 21){
+            item.block += 4;
+            item.addHp += 40;
+        }
+
+    }
+
+    function adicionarDano(item){
+        item.ataqMin ++;
+        item.ataqMax ++;
+
+        if(item.nivelAtual >= 10){
+            item.ataqMin ++;
+            item.ataqMax ++;
+        }
+
+        if(item.nivelAtual >= 20){
+            item.ataqMin ++;
+            item.ataqMax ++;
+        }
+
+        if(item.nivelAtual >= 20){
+            item.addHp += 20;
+        }
         
     }
 
