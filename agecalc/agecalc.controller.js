@@ -18,7 +18,13 @@ angular.module('app').controller('agecalcCtrl', function ($scope) {
         23:"+23",
         24:"+24",
     }
-
+    $scope.niveisAgeAnel = {
+        1:"+1",
+        2:"+2",
+        3:"+3",
+        4:"+4",
+        5:"+5"
+    }
     function ageAnel(item){
         if(item.nivelAtual < 2){
             item.ataqMin += 3;
@@ -106,6 +112,106 @@ angular.module('app').controller('agecalcCtrl', function ($scope) {
         
     }
 
-    console.log($scope.niveisAge);
+    function calcularAgeItem(item, niveis){
+        itemJson = jsonItems.getById(item.id);
+        item.nivelAtual = 0;
+        itemJson.nivelAtual = 0;
+        switch(item.type){
+            case "garra":
+                for(var i = 0; i< niveis; i++){
+                    aumentaGarraFoiceEspada(item);
+                    aumentaGarraFoiceEspada(itemJson);
+                }
+            break;
+            case "machado":
+                for(var i = 0; i< niveis; i++){
+                    aumentarMachadoEMartelo(item);
+                    aumentarMachadoEMartelo(itemJson);
+                }
+            break;
+            case "martelo":
+                for(var i = 0; i< niveis; i++){
+                    aumentarMachadoEMartelo(item);
+                    aumentarMachadoEMartelo(itemJson);
+                }
+            break;
+            case "cajado":
+                for(var i = 0; i< niveis; i++){
+                    aumentarCajado(item);
+                    aumentarCajado(itemJson);
+                }
+            break;
+            case "foice":
+                for(var i = 0; i< niveis; i++){
+                    aumentaGarraFoiceEspada(item);
+                    aumentaGarraFoiceEspada(itemJson);
+                }
+            break;
+            case "espada":
+                for(var i = 0; i< niveis; i++){
+                    aumentaGarraFoiceEspada(item);
+                    aumentaGarraFoiceEspada(itemJson);
+                }
+            break;
+            case "arco":
+                for(var i = 0; i< niveis; i++){
+                    aumentarArcoLanca(item);
+                    aumentarArcoLanca(itemJson);
+                }
+            break;
+            case "lanca":
+                for(var i = 0; i< niveis; i++){
+                    aumentarArcoLanca(item);
+                    aumentarArcoLanca(itemJson);
+                }
+            break;    
+            case "escudo":
+                for(var i = 0; i< niveis; i++){
+                    aumentarEscudo(item);
+                    aumentarEscudo(itemJson);
+                }
+            break;            
+            case "armadura":
+                for(var i = 0; i< niveis; i++){
+                    aumentarArmadura(item);
+                    aumentarArmadura(itemJson);
+                }
+            break;
+        }
+    }
+
+    function aumentaGarraFoiceEspada(item){
+        item.nivelAtual ++;
+        adicionarDano(item);
+        taxaAtq(item,5);
+        critico(item);
+    }
+
+    function aumentarMachadoEMartelo(item){
+        item.nivelAtual ++;
+        adicionarDano(item);
+        taxaAtq(item, 10);
+    }
+
+    function aumentarCajado(item){
+        aumentarMachadoEMartelo(item);
+        item.addMana += 10;
+    }
+
+    function aumentarArcoLanca(item){
+        adicionarDano(item);
+        critico(item);
+    }
+
+    function aumentarEscudo(item){
+        block(item);
+        abs(item,0.2);
+    }
+
+    function aumentarArmadura(item){
+        taxaDefesaItem(item, 5);
+        absorcao(item,0.5);
+    }
+
 
 });
