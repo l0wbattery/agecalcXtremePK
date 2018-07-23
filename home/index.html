@@ -1,8 +1,153 @@
 <div ng-controller="homeCtrl">
+        <div class="container">
+            <div class="row">
+                <img src="http://xtremepk.com.br/site/images/Banner.png" alt="" srcset="">
+            </div>
+        </div>
+        
+        <div class="container" ng-if="!selecionado && !calculado">
+            <div class="row">
+                <div ng-repeat="x in selecaoHome">  
+                    <div class="col-md-6 offset-md-3 margin-top-btn">      
+                        <input class="btn btn-primary" type="button" value="{{x.nome}}" ng-disabled="x.disabled" ng-click="onSelectItem(x.id)"> 
+                    </div>    
+                </div> 
+            </div>            
+        </div>
+        <div class="container" ng-if="selectedItem && !itemCalculado">
+            <div class="col-md-12 offset-md-5 margin-top-btn">
+                    <div class="row" style="font-family: 'Courier New', Courier, monospace;color: whitesmoke; font-size: 30px; margin-left: -20px; ">
+                        Item escolhido: {{selectedItem.type}}
+                    </div>
 
-    
-    <div ng-repeat="x in selecaoHome">
-        <img class="homeImageSize" src="{{x.imagem}}" alt="" srcset="">
-    </div>
+                    <div class="row" ng-if="selectedItem.ataqMin">
+                        <input type="text" name="ataqMin" id="ataqMin" placeholder="Ataque mínimo" ng-model="item.ataqMin">
+                    </div>
+                    
+                    <div class="row" ng-if="selectedItem.ataqMax">
+                        <input type="text" name="ataqMax" id="ataqMax" placeholder="Ataque máximo" ng-model="item.ataqMax">
+                    </div>
+                    
+        
+                    <div class="row" ng-if="selectedItem.critico">
+                        <input type="text" name="critico" id="critico" placeholder="Crítico" ng-model="item.critico">
+                    </div>
+                    
+        
+                    <div class="row" ng-if="selectedItem.taxaAtaq">
+                        <input type="text" name="taxaAtq" id="taxaAtq" placeholder="Taxa de Ataque" ng-model="item.taxaAtaq">
+                    </div>
+                    
+        
+                    <div class="row" ng-if="selectedItem.taxaDef">
+                        <input type="text" name="taxaDef" id="taxaDef" placeholder="Taxa de Defesa" ng-model="item.taxaDef">
+                    </div>
+                    
+        
+                    <div class="row" ng-if="selectedItem.abs">
+                        <input type="text" name="abs" id="abs" placeholder="Absorção" ng-model="item.abs">      
+                    </div>
+                    
+                    <div class="row" ng-if="selectedItem.bloqueio">
+                        <input type="text" name="bloqueio" id="bloqueio" placeholder="Bloqueio" ng-model="item.bloqueio">
+                    </div>
+                    
+        
+                    <div class="row" ng-if="selectedItem.addHp">
+                        <input type="text" name="addHp" id="addHp" placeholder="ADD HP" ng-model="item.addHp">
+                    </div>
+                    
+        
+                    <div class="row" ng-if="selectedItem.addMp">
+                        <input type="text" name="addMp" id="addMp" placeholder="ADD MP" ng-model="item.addMp">
+                    </div>
+                    
+        
+                    <div class="row" ng-if="selectedItem.addSp">
+                        <input type="text" name="addSp" id="addSp" placeholder="ADD RES" ng-model="item.addSp">
+                    </div>
+                    
+        
+                    <div class="row" ng-if="selectedItem.hpRegen">
+                        <input type="text" name="hpRegen" id="hpRegen" placeholder="HP REGEN" ng-model="item.hpRegen">
+                    </div>
+                    
+        
+                    <div class="row" ng-if="selectedItem.mpRegen">
+                        <input type="text" name="mpRegen" id="mpRegen" placeholder="MP Regen" ng-model="item.mpRegen">
+                    </div>            
+        
+                    <div class="row">
+                        <input type="number" name="niveisAgeInput" id="niveisAgeInput" placeholder="Nível do Age" style="width: 178px;" ng-model="niveisAgeInput">
+                    </div>            
+                    <input type="button" class="btn btn-default" value="Voltar" ng-click="reloadRoute()">
+                    <input ng-if="!calculado" type="button" class="btn btn-primary" value="Calcular" ng-click="calcularAgeItem(item, niveisAgeInput)">
+            </div>            
+        </div> 
+        <div class="container" ng-if="itemCalculado">
+            <div class="col-md-12 offset-md-5 margin-top-btn" style="font-family: 'Courier New', Courier, monospace;color: whitesmoke; font-size: 30px;">
+                    <div class="row" >
+                        Item escolhido: {{selectedItem.type}}
+                    </div>
 
+                    <div class="row" ng-if="selectedItem.ataqMin">
+                        Ataque Mínimo: -{{itemCalculado.ataqMin}}
+                    </div>
+                    
+                    <div class="row" ng-if="selectedItem.ataqMax">
+                        Ataque Máximo: -{{itemCalculado.ataqMax}}
+                    </div>
+                    
+        
+                    <div class="row" ng-if="selectedItem.critico">
+                        Crítico: -{{itemCalculado.critico}}
+                    </div>
+                    
+        
+                    <div class="row" ng-if="selectedItem.taxaAtaq">
+                        Taxa de Ataque: -{{itemCalculado.taxaAtaq}}
+                    </div>
+                    
+        
+                    <div class="row" ng-if="selectedItem.taxaDef">
+                        Taxa de defesa: -{{itemCalculado.taxaDef}}
+                    </div>
+                    
+        
+                    <div class="row" ng-if="selectedItem.abs">
+                        Absorb: -{{itemCalculado.abs}}      
+                    </div>
+                    
+                    <div class="row" ng-if="selectedItem.bloqueio">
+                        Block: -{{itemCalculado.bloqueio}}
+                    </div>
+                    
+        
+                    <div class="row" ng-if="selectedItem.addHp">
+                        ADD HP: -{{itemCalculado.addHp}}
+                    </div>
+                    
+        
+                    <div class="row" ng-if="selectedItem.addMp">
+                        ADD MP: -{{itemCalculado.addMp}}
+                    </div>
+                    
+        
+                    <div class="row" ng-if="selectedItem.addSp">
+                        ADD SP: -{{itemCalculado.addSp}}
+                    </div>
+                    
+        
+                    <div class="row" ng-if="selectedItem.hpRegen">
+                        HP REGEN: -{{itemCalculado.hpRegen}}
+                    </div>
+                    
+        
+                    <div class="row" ng-if="selectedItem.mpRegen">
+                        MP REGEN: -{{itemCalculado.mpRegen}}
+                    </div>             
+                <input type="button" class="btn btn-default" style="font-family: Arial, Helvetica, sans-serif" value="Voltar" ng-click="reloadRoute()">
+                
+            </div>            
+        </div>     
 </div>
