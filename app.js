@@ -449,16 +449,19 @@ angular.module('app').controller('homeCtrl',['$scope','$route','toastr', functio
     }
 
     function aumentarCajado(item){
+        item.nivelAtual ++;
         aumentarMachadoEMartelo(item);
         item.addMana += 10;
     }
 
     function aumentarArcoLanca(item){
+        item.nivelAtual ++;
         adicionarDano(item);
         critico(item);
     }
 
     function aumentarEscudo(item){
+        item.nivelAtual ++;
         block(item);
         abs(item,0.2);
     }
